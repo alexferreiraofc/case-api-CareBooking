@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:15.2
+    environment:
+      POSTGRES_USER: 160290
+      POSTGRES_PASSWORD: 160290
+    ports:
+      - "5432:5432"
+    network_mode: bridge
