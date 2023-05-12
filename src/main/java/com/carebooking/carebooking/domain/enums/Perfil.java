@@ -2,7 +2,7 @@ package com.carebooking.carebooking.domain.enums;
 
 public enum Perfil {
     PACIENTE(0, "Paciente"),
-    MEDICO(1, "MEDICO"),
+    MEDICO(1, "Médico"),
     COLABORADOR(2, "Colaborador");
 
     private Integer codigo;
