@@ -25,9 +25,9 @@ public enum Andamento {
         if (cod == null) {
             return null;
         }
-        for (Andamento funcao : Andamento.values()) {
-            if (cod.equals(funcao.getCodigo())) {
-                return funcao;
+        for (Andamento andamento : Andamento.values()) {
+            if (cod.equals(andamento.getCodigo())) {
+                return andamento;
             }
         }
         throw new IllegalArgumentException("Andamento inválido!");

@@ -26,9 +26,9 @@ public enum Prioridade {
         if (cod == null) {
             return null;
         }
-        for (Prioridade funcao : Prioridade.values()) {
-            if (cod.equals(funcao.getCodigo())) {
-                return funcao;
+        for (Prioridade prioridade : Prioridade.values()) {
+            if (cod.equals(prioridade.getCodigo())) {
+                return prioridade;
             }
         }
         throw new IllegalArgumentException("Prioridade inválida!");
