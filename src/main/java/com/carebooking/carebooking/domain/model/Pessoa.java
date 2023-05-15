@@ -1,11 +1,7 @@
 package com.carebooking.carebooking.domain.model;
 
 import com.carebooking.carebooking.domain.enums.Perfil;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -19,13 +15,15 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @Column(name = "nome", nullable = false)
     private String nome;
-    @NotNull
+    @Column(name = "cpf", nullable = false)
     private String cpf;
-    @NotNull
+    @Column(name = "data_nascimento", nullable = false)
     private Date dataNascimento;
+    @Column(name = "perfil")
     private Set<Integer> perfis = new HashSet<>();
+    @Column(name = "data_criacao")
     private LocalDate dataCriacao = LocalDate.now();
 
 

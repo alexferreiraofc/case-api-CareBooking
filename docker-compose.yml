@@ -1,9 +1,19 @@
 services:
-  postgres:
+  db:
     image: postgres:15.2
-    environment:
-      POSTGRES_USER: 160290
-      POSTGRES_PASSWORD: 160290
+    restart: always
     ports:
       - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: 160290
+      POSTGRES_PASSWORD: 160290
     network_mode: bridge
+  app:
+    build: .
+    volumes:
+      - ./config:/app/config
+volumes:
+  db-data:
