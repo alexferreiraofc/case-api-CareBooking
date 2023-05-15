@@ -1,63 +1,47 @@
 package com.carebooking.carebooking.domain.model;
 
 import com.carebooking.carebooking.domain.enums.Perfil;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import java.time.LocalDate;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 public class Pessoa {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome", nullable = false)
-    private String nome;
-    @Column(name = "cpf", nullable = false)
-    private String cpf;
-    @Column(name = "data_nascimento", nullable = false)
+    private String name;
     private Date dataNascimento;
-    @Column(name = "perfil")
-    private Set<Integer> perfis = new HashSet<>();
-    @Column(name = "data_criacao")
-    private LocalDate dataCriacao = LocalDate.now();
-
+    private Perfil perfil;
 
     public Pessoa() {
-        super();
-        addPerfil(Perfil.CLIENTE);
+
     }
 
-    public Pessoa(Long id, String nome, String cpf, Date dataNascimento) {
+    public Pessoa(Long id, String name, Date dataNascimento, Perfil perfil) {
         this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
+        this.name = name;
         this.dataNascimento = dataNascimento;
-        addPerfil(Perfil.CLIENTE);
+        this.perfil = perfil;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getName() {
+        return name;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getDataNascimento() {
@@ -68,20 +52,12 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void addPerfil(Perfil perfil) {
-        this.perfis.add(perfil.getCodigo());
-    }
-
-    public LocalDate getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     @Override
@@ -92,13 +68,13 @@ public class Pessoa {
         Pessoa pessoa = (Pessoa) o;
 
         if (!id.equals(pessoa.id)) return false;
-        return cpf.equals(pessoa.cpf);
+        return name.equals(pessoa.name);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + cpf.hashCode();
+        result = 31 * result + name.hashCode();
         return result;
     }
 }
